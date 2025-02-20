@@ -19,7 +19,7 @@ def generate_slogan(word1, word2, word3, tone):
     return response.choices[0].message.content
 
 def main():
-    word1, word2, word3, tone = input("Podaj trzy słowa i ton sloganu (po spacji): ").split()
+    word1, word2, word3, tone = input("Type three words and slogan tone (after spacebar): ").split()
     result = generate_slogan(word1, word2, word3, tone)
     print(result)
 

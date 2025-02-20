@@ -41,7 +41,7 @@ class AINotes:
             print(f'{result[i][0]}. {result[i][1]}')
 
     def summaries_note(self):
-        id = input("Wybierz numer notatki do streszczenia: ")
+        id = input("Choose note number: ")
         query = self.cursor.execute(f"Select note From notes Where id = {id}")
         result = query.fetchone()[0]
         response = self.client.chat.completions.create(
@@ -55,15 +55,15 @@ class AINotes:
         print(response.choices[0].message.content)
 
     def translate_note(self):
-        id = input("Wybierz numer notatki do przetłumaczenia: ")
-        lang = input("Na jaki język chcesz przetłumaczyć tą notatkę: ")
+        id = input("Choose note number: ")
+        lang = input("Language to translate: ")
         query = self.cursor.execute(f"Select note From notes Where id = {id}")
         result = query.fetchone()[0]
         response = self.client.chat.completions.create(
             messages=[
                 {
                     "role": "user",
-                    "content": f"Przetłumacz ten tekst {result} na język {lang}",
+                    "content": f"Translate {result} to {lang}",
                 }
             ],
             model="gpt-4o")
@@ -71,11 +71,11 @@ class AINotes:
 
 
     def main(self):
-        print("1. Dodaj notatke")
-        print("2. Wyświetl notatki")
-        print("3. Streść notatke")
-        print('4. Przetłumacz notatkę')
-        option = input('Wybierz opcje: ')
+        print("1. Add note")
+        print("2. Display notes ")
+        print("3. Summaries note")
+        print('4. Translate note')
+        option = input('Choose option: ')
         if option == '1':
             self.add_note()
         elif option == '2':

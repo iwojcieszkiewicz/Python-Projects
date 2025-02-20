@@ -29,7 +29,7 @@ class App:
         return {'Summary': summaries.choices[0].message.content}
 
     def main(self):
-        path = input("Podaj ścieżke do pliku audio: ")
+        path = input("Enter the path to the file: ")
         print(self.text_summaries(path))
 
 app = App()
